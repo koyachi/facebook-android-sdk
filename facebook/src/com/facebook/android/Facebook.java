@@ -1057,6 +1057,28 @@ public class Facebook {
     }
 
     /**
+     * Check facebook app installed
+     *
+     * @param activity
+     * @param applicationId
+     * @param permissions same as facebook.authorize()
+     */
+    public boolean isAppInstalled(Activity activity, String applicationId, String[] permissions) {
+        Intent intent = new Intent();
+        intent.setClassName("com.facebook.katana",
+                            "com.facebook.katana.ProxyAuth");
+        intent.putExtra("client_id", applicationId);
+        if (permissions.length > 0) {
+            intent.putExtra("scope", TextUtils.join(",", permissions));
+        }
+
+        if (!validateActivityIntent(activity, intent)) {
+            return false;
+        }
+        return true;
+    }
+
+    /**
      * Async implementation to allow auto publishing to not block the ui thread.
      */
     private class AutoPublishAsyncTask extends AsyncTask<Void, Void, Void> {
