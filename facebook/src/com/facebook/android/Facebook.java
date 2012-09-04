@@ -1057,7 +1057,7 @@ public class Facebook {
     }
 
     /**
-     * Check facebook app installed
+     * Check if facebook app is installed
      *
      * @param activity
      * @param applicationId
